@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applewood Manor Culinary — Robin Collins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F4EEE2;
+    --paper: #FBF8F1;
+    --ink: #2C1810;
+    --ink-soft: #5C4032;
+    --leaf: #7BA428;
+    --leaf-deep: #5C7E1E;
+    --berry: #D63584;
+    --berry-soft: #E85DA0;
+    --apple: #C44536;
+    --rule: #DDD0BC;
+    --shadow-soft: 0 30px 60px -30px rgba(44, 24, 16, 0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--berry-soft); color: var(--paper); }
+
+  /* TOPBAR */
+  .topbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 14px 40px;
+    background: rgba(244, 238, 226, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .topbar .brand { display: flex; align-items: center; gap: 12px; }
+  .topbar .brand img { width: 40px; height: 40px; border-radius: 50%; }
+  .topbar .brand .name {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 16px;
+    letter-spacing: 0.05em; text-transform: uppercase; line-height: 1;
+    font-variation-settings: "SOFT" 80, "opsz" 36;
+  }
+  .topbar .brand .name em {
+    display: block; font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 13px; color: var(--ink-soft); letter-spacing: 0.02em;
+    text-transform: none; margin-top: 2px;
+  }
+  .topbar nav { display: flex; gap: 32px; align-items: center; }
+  .topbar nav a {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+    font-weight: 500; display: inline-flex; align-items: baseline; gap: 8px;
+    transition: color .25s;
+  }
+  .topbar nav a:hover { color: var(--berry); }
+  .topbar nav a .num {
+    font-family: 'Fraunces', serif; font-size: 10px; color: var(--leaf-deep);
+    font-style: italic; font-variation-settings: "opsz" 9;
+  }
+  .topbar .cta { justify-self: end; }
+  .topbar .cta a {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--paper); background: var(--ink);
+    padding: 11px 18px; text-decoration: none; transition: background .3s;
+  }
+  .topbar .cta a:hover { background: var(--berry); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 120px 40px 80px;
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 80px;
+    align-items: center; position: relative;
+  }
+  .hero-text { max-width: 640px; animation: fadeUp 1.1s ease-out; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-bottom: 28px;
+  }
+  .eyebrow::before, .eyebrow::after {
+    content: ""; display: inline-block; width: 28px; height: 1px; background: var(--leaf);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(56px, 8vw, 112px); line-height: 0.95;
+    letter-spacing: -0.02em; color: var(--ink);
+    font-variation-settings: "SOFT" 100, "opsz" 144; margin-bottom: 8px;
+  }
+  .hero h1 em { font-style: italic; color: var(--berry); font-weight: 300; }
+  .hero .subline {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(20px, 2.2vw, 26px); color: var(--ink-soft);
+    margin: 24px 0 32px; max-width: 520px; line-height: 1.4;
+  }
+  .hero .meta {
+    display: flex; gap: 32px; align-items: center; margin-top: 36px;
+    padding-top: 24px; border-top: 1px solid var(--rule);
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-soft); flex-wrap: wrap;
+  }
+  .hero .meta strong { color: var(--ink); font-weight: 500; }
+  .hero-image {
+    position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+    animation: fadeUp 1.3s ease-out 0.15s backwards;
+  }
+  .hero-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.95) contrast(1.02);
+  }
+  .hero-image::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 60%, rgba(44,24,16,0.18));
+  }
+  .hero-image .caption {
+    position: absolute; bottom: 24px; left: 24px; right: 24px;
+    color: var(--paper); font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 16px; line-height: 1.4;
+  }
+  .hero-image .caption span {
+    display: block; font-style: normal; font-family: 'Fraunces', serif;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    margin-bottom: 6px; color: rgba(244,238,226,0.75);
+  }
+  .scroll-cue {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--ink-soft);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .scroll-cue::after {
+    content: ""; width: 1px; height: 30px; background: var(--leaf);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(0.4); transform-origin: top; }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ORNAMENT */
+  .ornament {
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; padding: 60px 0;
+  }
+  .ornament::before, .ornament::after {
+    content: ""; flex: 0 0 80px; height: 1px; background: var(--rule);
+  }
+  .ornament svg { width: 32px; height: 32px; }
+
+  /* SECTION HEAD */
+  section { padding: 80px 40px; position: relative; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head .label {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--leaf-deep);
+    display: inline-flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .section-head .label::before, .section-head .label::after {
+    content: ""; width: 24px; height: 1px; background: var(--leaf);
+    display: inline-block;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(40px, 6vw, 68px); line-height: 1;
+    letter-spacing: -0.015em; color: var(--ink);
+    font-variation-settings: "SOFT" 100, "opsz" 96;
+  }
+  .section-head h2 em { font-style: italic; color: var(--berry); }
+  .section-head .lede {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-weight: 300; font-size: 22px; color: var(--ink-soft);
+    max-width: 620px; margin: 22px auto 0; line-height: 1.5;
+  }
+
+  /* ABOUT */
+  .about { padding: 120px 40px; background: var(--paper); }
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: center;
+  }
+  .about-photo { aspect-ratio: 4 / 5; overflow: hidden; position: relative; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92); }
+  .about-photo .badge {
+    position: absolute; bottom: 20px; left: 20px;
+    background: var(--paper); padding: 14px 20px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 14px;
+    color: var(--ink); box-shadow: var(--shadow-soft);
+  }
+  .about-photo .badge span {
+    display: block; font-style: normal; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--leaf-deep); margin-bottom: 4px;
+  }
+  .about-text .label {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--leaf-deep);
+    margin-bottom: 20px; display: inline-flex; align-items: center; gap: 14px;
+  }
+  .about-text .label::before {
+    content: ""; width: 32px; height: 1px; background: var(--leaf);
+  }
+  .about-text h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(38px, 5vw, 60px); line-height: 1.02;
+    letter-spacing: -0.015em; margin-bottom: 28px;
+    font-variation-settings: "SOFT" 100, "opsz" 80;
+  }
+  .about-text h2 em { font-style: italic; color: var(--berry); }
+  .about-text p {
+    font-family: 'Cormorant Garamond', serif; font-size: 19px;
+    color: var(--ink); line-height: 1.6; margin-bottom: 18px;
+  }
+  .about-text p:first-of-type::first-letter {
+    font-family: 'Fraunces', serif; font-size: 4em; float: left;
+    line-height: 0.85; margin: 6px 12px 0 0; color: var(--berry);
+    font-style: normal; font-weight: 300;
+  }
+  .about-text .signature {
+    margin-top: 32px; font-family: 'Caveat', cursive;
+    font-size: 38px; color: var(--apple); line-height: 1;
+  }
+
+  /* CREDENTIALS */
+  .credentials {
+    background: var(--ink); color: var(--paper);
+    padding: 80px 40px; position: relative; overflow: hidden;
+  }
+  .credentials::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at top left, rgba(123, 164, 40, 0.1), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(214, 53, 132, 0.08), transparent 60%);
+  }
+  .credentials-inner {
+    max-width: 1100px; margin: 0 auto; position: relative; text-align: center;
+  }
+  .credentials .label {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(244,238,226,0.55);
+    display: inline-flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .credentials .label::before, .credentials .label::after {
+    content: ""; width: 32px; height: 1px; background: rgba(123,164,40,0.5);
+  }
+  .credentials h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(34px, 4.5vw, 52px); line-height: 1.05;
+    margin-bottom: 50px; font-variation-settings: "SOFT" 100;
+  }
+  .credentials h2 em { font-style: italic; color: #E8A87C; }
+  .creds-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    text-align: left; margin-top: 40px;
+  }
+  .creds-col h3 {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: rgba(244,238,226,0.6);
+    margin-bottom: 20px; padding-bottom: 14px;
+    border-bottom: 1px solid rgba(244,238,226,0.18);
+  }
+  .creds-col ul { list-style: none; }
+  .creds-col ul li {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px;
+    color: rgba(244,238,226,0.92); padding: 8px 0; line-height: 1.4;
+  }
+  .creds-col ul li em {
+    font-style: italic; color: rgba(244,238,226,0.6); font-size: 15px;
+  }
+
+  /* CLASSES */
+  .classes { padding: 120px 40px; background: var(--cream); }
+  .classes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 56px 40px; max-width: 1280px; margin: 0 auto;
+  }
+  .class-card { cursor: pointer; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .class-card:hover { transform: translateY(-6px); }
+  .class-card .img-wrap {
+    aspect-ratio: 4 / 5; overflow: hidden; background: var(--rule);
+    margin-bottom: 22px; position: relative;
+  }
+  .class-card .img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.95); transition: transform 1s ease;
+  }
+  .class-card:hover .img-wrap img { transform: scale(1.04); }
+  .class-card .num-tag {
+    position: absolute; top: 16px; left: 16px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 11px;
+    color: var(--paper); background: rgba(44,24,16,0.5);
+    padding: 5px 12px; border-radius: 999px; letter-spacing: 0.1em;
+    backdrop-filter: blur(4px);
+  }
+  .class-card .duration {
+    position: absolute; top: 16px; right: 16px;
+    font-family: 'Fraunces', serif; font-size: 10px;
+    color: var(--paper); background: rgba(214, 53, 132, 0.85);
+    padding: 5px 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    backdrop-filter: blur(4px);
+  }
+  .class-card .cat {
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-bottom: 8px;
+  }
+  .class-card h3 {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px;
+    line-height: 1.1; margin-bottom: 12px; letter-spacing: -0.01em;
+    font-variation-settings: "SOFT" 80, "opsz" 36;
+  }
+  .class-card p {
+    font-size: 16px; color: var(--ink-soft); line-height: 1.5; font-style: italic;
+  }
+  .class-card .foot {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--rule);
+    gap: 16px;
+  }
+  .class-card .foot .price {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.3; flex: 1;
+  }
+  .class-card .foot .price strong {
+    font-style: normal; font-weight: 400; color: var(--ink); font-size: 18px;
+  }
+  .class-card .foot .price span {
+    display: block;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-style: normal; color: var(--ink-soft); margin-top: 2px;
+  }
+  .class-card .foot .read {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--berry); white-space: nowrap;
+  }
+
+  /* HOW IT WORKS */
+  .how { padding: 120px 40px; background: var(--paper); }
+  .how-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 48px; max-width: 1200px; margin: 0 auto;
+  }
+  .how-step { position: relative; padding-top: 32px; border-top: 1px solid var(--ink); }
+  .how-step .num {
+    font-family: 'Fraunces', serif; font-style: italic;
+    font-size: 14px; color: var(--berry); margin-bottom: 16px;
+  }
+  .how-step h3 {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px;
+    line-height: 1.1; margin-bottom: 12px; font-variation-settings: "SOFT" 80;
+  }
+  .how-step p { font-size: 16px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* UPCOMING */
+  .upcoming { padding: 120px 40px; background: var(--cream); }
+  .upcoming-inner { max-width: 1100px; margin: 0 auto; }
+  .schedule-list { border-top: 1px solid var(--ink); margin-top: 40px; }
+  .schedule-item {
+    display: grid; grid-template-columns: auto 1fr auto auto;
+    gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--rule);
+    align-items: center; transition: background .3s;
+  }
+  .schedule-item:hover { background: rgba(214,53,132,0.04); }
+  .schedule-item .date-block {
+    text-align: center; min-width: 90px;
+    border-right: 1px solid var(--rule); padding-right: 32px;
+  }
+  .schedule-item .date-block .day {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: 42px; line-height: 1; color: var(--ink);
+  }
+  .schedule-item .date-block .mo {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-top: 6px;
+  }
+  .schedule-item .info h4 {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 22px;
+    margin-bottom: 4px; font-variation-settings: "SOFT" 80;
+  }
+  .schedule-item .info p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 15px; color: var(--ink-soft);
+  }
+  .schedule-item .seats { text-align: right; min-width: 110px; }
+  .schedule-item .seats .n {
+    font-family: 'Fraunces', serif; font-size: 16px; font-style: italic; color: var(--berry);
+  }
+  .schedule-item .seats .l {
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-top: 4px;
+  }
+  .schedule-item .book {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--paper); background: var(--ink);
+    padding: 12px 18px; text-decoration: none; transition: background .3s;
+  }
+  .schedule-item .book:hover { background: var(--berry); }
+  .schedule-item.full { opacity: 0.55; }
+  .schedule-item.full .book {
+    background: transparent; color: var(--ink-soft);
+    border: 1px solid var(--rule); pointer-events: none;
+  }
+  .schedule-item.full .seats .n { color: var(--ink-soft); }
+  .schedule-note {
+    margin-top: 32px; text-align: center;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 17px; color: var(--ink-soft);
+  }
+
+  /* NOTES (Robin's blog) */
+  .notes { padding: 120px 40px; background: var(--paper); }
+  .notes-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px; max-width: 1280px; margin: 0 auto;
+  }
+  .note { cursor: pointer; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .note:hover { transform: translateY(-4px); }
+  .note .img-wrap {
+    aspect-ratio: 4 / 3; overflow: hidden; margin-bottom: 22px; position: relative;
+  }
+  .note.featured .img-wrap { aspect-ratio: 4 / 3.4; }
+  .note .img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease;
+  }
+  .note:hover .img-wrap img { transform: scale(1.04); }
+  .note .img-wrap .badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--berry); color: var(--paper);
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; padding: 5px 12px;
+  }
+  .note .meta-row {
+    display: flex; gap: 14px; align-items: center;
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-bottom: 12px;
+  }
+  .note .meta-row .dot { color: var(--rule); }
+  .note h3 {
+    font-family: 'Fraunces', serif; font-weight: 400;
+    line-height: 1.1; letter-spacing: -0.01em;
+    margin-bottom: 12px; font-variation-settings: "SOFT" 80, "opsz" 36;
+  }
+  .note.featured h3 { font-size: 36px; }
+  .note h3 { font-size: 22px; }
+  .note p {
+    font-size: 16px; color: var(--ink-soft); line-height: 1.5;
+    font-style: italic; margin-bottom: 14px;
+  }
+  .note .read {
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--berry);
+  }
+  .notes-cta {
+    text-align: center; margin-top: 60px;
+    padding-top: 40px; border-top: 1px solid var(--rule);
+  }
+  .notes-cta a {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--ink); padding-bottom: 4px; transition: all .3s;
+  }
+  .notes-cta a:hover { color: var(--berry); border-color: var(--berry); }
+
+  /* CONTACT */
+  .contact {
+    padding: 140px 40px; background: var(--ink); color: var(--paper);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at top, rgba(214, 53, 132, 0.12), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(123, 164, 40, 0.1), transparent 60%);
+  }
+  .contact-inner { max-width: 720px; margin: 0 auto; position: relative; }
+  .contact .seal {
+    width: 90px; height: 90px; border-radius: 50%;
+    margin: 0 auto 28px; background: var(--paper); padding: 6px;
+    box-shadow: 0 0 0 1px rgba(244,238,226,0.2);
+  }
+  .contact .seal img { width: 100%; height: 100%; }
+  .contact h2 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+    margin-bottom: 20px; font-variation-settings: "SOFT" 100, "opsz" 80;
+  }
+  .contact h2 em { font-style: italic; color: #E8A87C; }
+  .contact p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 21px; color: rgba(244,238,226,0.78);
+    line-height: 1.5; margin-bottom: 36px; max-width: 580px;
+    margin-left: auto; margin-right: auto;
+  }
+  .contact .email-btn {
+    display: inline-block; font-family: 'Fraunces', serif;
+    font-size: 15px; letter-spacing: 0.1em; color: var(--paper);
+    text-decoration: none; padding: 18px 32px;
+    border: 1px solid rgba(244,238,226,0.4); transition: all .3s; margin-bottom: 24px;
+  }
+  .contact .email-btn:hover {
+    background: var(--paper); color: var(--ink); border-color: var(--paper);
+  }
+  .contact .small {
+    margin-top: 32px; font-family: 'Fraunces', serif; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,238,226,0.45);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1A0E08; color: rgba(244,238,226,0.7);
+    padding: 60px 40px 40px; border-top: 1px solid rgba(244,238,226,0.08);
+  }
+  .foot-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 60px; margin-bottom: 50px;
+  }
+  .foot-inner h4 {
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--paper); margin-bottom: 18px; font-weight: 500;
+  }
+  .foot-inner .brand-blk .logo-row {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+  }
+  .foot-inner .brand-blk .logo-row img { width: 48px; height: 48px; border-radius: 50%; }
+  .foot-inner .brand-blk .name {
+    font-family: 'Fraunces', serif; font-weight: 400; font-size: 18px;
+    color: var(--paper); line-height: 1.1; text-transform: uppercase;
+    letter-spacing: 0.06em; font-variation-settings: "SOFT" 80;
+  }
+  .foot-inner .brand-blk .name em {
+    display: block; font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 14px; text-transform: none; letter-spacing: 0;
+    color: rgba(244,238,226,0.6); margin-top: 4px;
+  }
+  .foot-inner .brand-blk p {
+    font-family: 'Cormorant Garamond', serif; font-size: 16px;
+    line-height: 1.5; margin-bottom: 6px; color: rgba(244,238,226,0.7);
+  }
+  .foot-inner ul { list-style: none; }
+  .foot-inner ul li { padding: 6px 0; }
+  .foot-inner ul li a {
+    color: rgba(244,238,226,0.7); text-decoration: none;
+    font-family: 'Cormorant Garamond', serif; font-size: 17px; transition: color .3s;
+  }
+  .foot-inner ul li a:hover { color: #E8A87C; }
+  .foot-bot {
+    max-width: 1280px; margin: 0 auto;
+    padding-top: 30px; border-top: 1px solid rgba(244,238,226,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(244,238,226,0.45);
+  }
+  .foot-bot .links { display: flex; gap: 28px; }
+  .foot-bot .links a {
+    color: rgba(244,238,226,0.45); text-decoration: none; transition: color .3s;
+  }
+  .foot-bot .links a:hover { color: var(--paper); }
+
+  /* NOTE PAGES */
+  .note-page { padding-top: 80px; }
+  .note-hero { width: 100%; max-height: 60vh; overflow: hidden; }
+  .note-hero img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.92); }
+  .note-body {
+    max-width: 720px; margin: 0 auto; padding: 60px 40px 100px;
+  }
+  .note-meta {
+    display: flex; gap: 12px; align-items: center;
+    font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--leaf-deep); margin-bottom: 24px;
+  }
+  .note-meta .dot { color: var(--rule); }
+  .note-body h1 {
+    font-family: 'Fraunces', serif; font-weight: 300;
+    font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+    font-variation-settings: "SOFT" 100, "opsz" 80;
+  }
+  .note-lede {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 22px; color: var(--ink-soft); line-height: 1.5;
+    margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--rule);
+  }
+  .note-content {
+    font-family: 'Cormorant Garamond', serif; font-size: 19px; line-height: 1.7;
+    color: var(--ink);
+  }
+  .note-content p { margin-bottom: 22px; }
+  .note-content em { font-style: italic; }
+  .note-content p:last-child {
+    font-family: 'Caveat', cursive; font-size: 32px;
+    color: var(--apple); line-height: 1; margin-top: 40px;
+  }
+  .back-link {
+    display: inline-block; margin-top: 60px;
+    font-family: 'Fraunces', serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--ink); padding-bottom: 4px; transition: all .3s;
+  }
+  .back-link:hover { color: var(--berry); border-color: var(--berry); }
+
+  /* RESPONSIVE */
+  @media (max-width: 980px) {
+    .topbar { padding: 12px 18px; grid-template-columns: 1fr auto; }
+    .topbar nav { display: none; }
+    .topbar .brand .name { font-size: 13px; }
+    .topbar .brand .name em { font-size: 11px; }
+    .topbar .cta a { padding: 9px 12px; font-size: 10px; }
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 100px 20px 60px; min-height: auto; }
+    .hero-image { order: -1; aspect-ratio: 4 / 5; max-height: 70vh; }
+    .scroll-cue { display: none; }
+    section { padding: 60px 20px; }
+    .about, .credentials, .classes, .how, .upcoming, .notes, .contact { padding-left: 20px; padding-right: 20px; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .creds-grid { grid-template-columns: 1fr; gap: 32px; }
+    .classes-grid { grid-template-columns: 1fr; gap: 40px; }
+    .how-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .notes-grid { grid-template-columns: 1fr; gap: 40px; }
+    .note.featured h3 { font-size: 28px; }
+    .schedule-item { grid-template-columns: auto 1fr; gap: 16px; row-gap: 12px; }
+    .schedule-item .date-block { padding-right: 16px; }
+    .schedule-item .seats { grid-column: 1 / -1; text-align: left; }
+    .schedule-item .book { grid-column: 1 / -1; text-align: center; }
+    .foot-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .foot-bot { flex-direction: column; gap: 14px; text-align: center; }
+    .contact { padding: 80px 20px; }
+    .note-body { padding: 40px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="/images/logo.jpg" alt="Applewood Manor Culinary">
+    <div class="name">Applewood Manor<em>Culinary</em></div>
+  </div>
+  <nav>
+    <a href="/#about"><span class="num">01</span>About Robin</a>
+    <a href="/#classes"><span class="num">02</span>Classes</a>
+    <a href="/#how"><span class="num">03</span>How it works</a>
+    <a href="/#upcoming"><span class="num">04</span>Upcoming</a>
+    <a href="/#notes"><span class="num">05</span>Notes</a>
+  </nav>
+  <div class="cta"><a href="/#contact">Book a class</a></div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="eyebrow">Asheville · North Carolina</div>
+    <h1>The kitchen<br>is <em>open.</em></h1>
+    <p class="subline">Small-group cooking and bread-baking classes in Robin Collins's home kitchen at Applewood Manor.</p>
+    <div class="meta">
+      <div><strong>4 Students Max</strong></div>
+      <div><strong>From $175</strong> per person</div>
+      <div><strong>3+ hours</strong> per class</div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="/images/hero-flour.jpg" alt="Robin dusting flour onto dough in her kitchen">
+    <div class="caption"><span>The kitchen at Applewood</span>Where every class begins, with a little flour and a long table.</div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<div class="ornament">
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="3" fill="#D63584"/>
+    <path d="M16 6 L16 26 M6 16 L26 16 M9 9 L23 23 M23 9 L9 23" stroke="#7BA428" stroke-width="1" stroke-linecap="round"/>
+    <circle cx="16" cy="6" r="1.5" fill="#7BA428"/>
+    <circle cx="16" cy="26" r="1.5" fill="#7BA428"/>
+    <circle cx="6" cy="16" r="1.5" fill="#7BA428"/>
+    <circle cx="26" cy="16" r="1.5" fill="#7BA428"/>
+  </svg>
+</div>
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-photo">
+      <img src="/images/hero-hands.jpg" alt="Robin shaping a baguette by hand">
+      <div class="badge"><span>Robin Collins</span>Applewood Manor Culinary</div>
+    </div>
+    <div class="about-text">
+      <div class="label">No. 01 · About Robin</div>
+      <h2>A passion <em>passed down</em>, and shared at the table.</h2>
+      
+      <p>Robin&#39;s love of cooking came from her mother, Mary Grace Ritchey. Cooking alongside her mother and sisters for family meals — drawing on her Italian and Lebanese heritage — gave her the confidence to explore other cuisines wherever life took her.</p>
+      
+      <p>Robin has lived in several states and travelled widely, exploring each cuisine and often taking classes to master the techniques. Over the years she has hosted dinners for up to fifty, sharing her love of food, wine, and bread baking with friends, family, and her husband Stephen&#39;s work associates.</p>
+      
+      <p>In 2020 Robin bought and ran the Applewood Manor Bed and Breakfast, where she continued cooking for guests, hosted Michelin-star chefs at special dinners, and taught small culinary classes. In 2024 the inn closed and Applewood Manor became home. Today, Robin is opening her kitchen again — to teach, to share, and perhaps to pass along a few family recipe secrets.</p>
+      
+      <div class="signature">— Robin</div>
+    </div>
+  </div>
+</section>
+
+<section class="credentials">
+  <div class="credentials-inner">
+    <div class="label">Studied · Cooked · Hosted</div>
+    <h2>Twenty years <em>at the bench</em>,<br>and a few good kitchens along the way.</h2>
+    <div class="creds-grid">
+      <div class="creds-col">
+        <h3>Studied at</h3>
+        <ul>
+          
+          <li>The French Culinary Institute <em>— New York, NY</em></li>
+          
+          <li>E5 Bakery <em>— London, UK</em></li>
+          
+          <li>The Bertinet Kitchen <em>— Bath, UK</em></li>
+          
+          <li>La Vecchia Scuola Bolognese (VSB) <em>— Bologna, Italy</em></li>
+          
+          <li>Le Phébus <em>— Joucas, France</em></li>
+          
+          <li>Casa di Langa <em>— Piedmont, Italy</em></li>
+          
+        </ul>
+      </div>
+      <div class="creds-col">
+        <h3>Cooked alongside</h3>
+        <ul>
+          
+          <li>Mads Refslund <em>— Ilis, Brooklyn, NY</em></li>
+          
+          <li>Chef Xavier Mathieu <em>— Le Phébus, Joucas, France</em></li>
+          
+          <li>Chef Marc Fosh <em>— Restaurant Marc Fosh, Palma, Mallorca</em></li>
+          
+          <li>Friends, family and guests of Applewood Manor <em>— for over four years</em></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="classes" class="classes">
+  <div class="section-head">
+    <div class="label">No. 02 · The Classes</div>
+    <h2>Cooking &amp; <em>bread-baking</em> classes</h2>
+    <p class="lede">Each class is small — a maximum of four — and built so you'll leave with the confidence to make it again at home. Choose a class below, or get in touch and we'll build one together.</p>
+  </div>
+
+  <div class="classes-grid">
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">01 / Bread</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/quiche.jpg" alt="Freshly baked white bread loaves">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>White Dough</h3>
+      <p>Baguettes and basic shapes by hand — shaping, scoring, baking. One dough, many breads to take home.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">02 / Bread</span>
+        <span class="duration">4 hrs</span>
+        
+        <img src="/images/pasta.jpg" alt="Fermented dough rising in a container">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>Fermented Bread</h3>
+      <p>Mixed-grain breads, sourdough, ciabatta — and a real understanding of fermented dough that travels home with you.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">03 / Sweet</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/cinnamon-knots.jpg" alt="Cinnamon swirl pastries on a baking sheet">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>Twisted Cinnamon Buns</h3>
+      <p>Sweet enriched dough shaped into golden, glossy knots. Easier than they look. Better than any bakery&#39;s.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">04 / Bread</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/kitchen.jpg" alt="Sesame bagels on a sheet pan">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>Bagels</h3>
+      <p>Boil-then-bake the proper way: chewy, crusted, and far better than anything store-bought. Plain or seeded.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">05 / Bread</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/bagels.jpg" alt="Whole-grain sandwich loaves on a cooling rack">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>Whole-Grain Sandwich Bread</h3>
+      <p>Your weekly loaf, sorted. Soft, sliceable, freezes well. Never buy grocery-aisle bread again.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">06 / Bread</span>
+        <span class="duration">4 hrs</span>
+        
+        <img src="/images/placeholder-pizza.svg" alt="Pizza — photo coming soon">
+        
+      </div>
+      <div class="cat">Everyday Bread Baking</div>
+      <h3>Olive Oil Dough</h3>
+      <p>One supple dough; three things to do with it: pizza, focaccia, and an olive bread worth showing off.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">07 / Pasta</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/cinnamon-swirls.jpg" alt="Hand-cut fresh pasta on a wooden board">
+        
+      </div>
+      <div class="cat">Home Cooking · Dinner Series</div>
+      <h3>Homemade Pasta &amp; Sauces</h3>
+      <p>Hand-rolled pasta with Robin&#39;s family red sauce — the recipe she grew up with, taught the way it was taught to her.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">08 / Pasta</span>
+        <span class="duration">4 hrs</span>
+        
+        <img src="/images/meatpies.jpg" alt="Slow-simmered bolognese sauce">
+        
+      </div>
+      <div class="cat">Home Cooking · Dinner Series</div>
+      <h3>Lasagna with Bolognese</h3>
+      <p>The proper Bologna way — slow-simmered ragù, fresh sheets, layered patiently. Vegetable lasagna option available.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">09 / Pasta</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/placeholder-gnocchi.svg" alt="Gnocchi — photo coming soon">
+        
+      </div>
+      <div class="cat">Home Cooking · Dinner Series</div>
+      <h3>Ricotta Gnocchi &amp; Pesto</h3>
+      <p>Light, pillowy ricotta gnocchi — quicker than potato gnocchi, just as satisfying — with a bright pesto from scratch.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">10 / Make-ahead</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/pain-campagne.jpg" alt="Lebanese meat pies on a serving board">
+        
+      </div>
+      <div class="cat">Home Cooking · Make-ahead</div>
+      <h3>Meat &amp; Spinach Pies</h3>
+      <p>Lebanese-style hand pies for the freezer — quick lunches, easy snacks, real dinner when the day got away from you.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">11 / Make-ahead</span>
+        <span class="duration">3 hrs</span>
+        
+        <img src="/images/starter.jpg" alt="Two savory tarts fresh from the oven">
+        
+      </div>
+      <div class="cat">Home Cooking · Pies &amp; Tarts</div>
+      <h3>Pie Crust — Sweet &amp; Savory</h3>
+      <p>One crust, endless possibilities — quiches, tarts, fruit pies. Choose your direction; we bake all morning.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Book this class →
+        </div>
+      </div>
+    </article>
+    
+    <article class="class-card">
+      <div class="img-wrap">
+        <span class="num-tag">12 / Custom</span>
+        <span class="duration">By request</span>
+        
+        <img src="/images/ratatouille.jpg" alt="A seasonal dish from Robin&#39;s kitchen">
+        
+      </div>
+      <div class="cat">For groups · For seasons · For you</div>
+      <h3>Build Your Own Class</h3>
+      <p>Coming up: summer pies, ice cream, holiday desserts, Christmas cookies. Or invite a few friends and we&#39;ll build something together.</p>
+      <div class="foot">
+        <div class="price">From <strong>$175</strong><span>/ person · contact for details</span></div>
+        <div class="read">
+          Get in touch →
+        </div>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+<section id="how" class="how">
+  <div class="section-head">
+    <div class="label">No. 03 · How it works</div>
+    <h2>From <em>email</em> to apron, in four steps.</h2>
+    <p class="lede">Every class begins with one student's request — then opens up to fill the four seats. So your friends, neighbours, or someone new can join you at the table.</p>
+  </div>
+
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="num">i.</div>
+      <h3>Pick a class</h3>
+      <p>Browse the classes above. Each one runs about three hours unless noted, with a maximum of four students at the kitchen counter.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">ii.</div>
+      <h3>Email Robin</h3>
+      <p>Tell her which class, your preferred dates, and how many of you. She'll confirm a date that works — and send pricing if the class needs more than the basic rate.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">iii.</div>
+      <h3>The class opens</h3>
+      <p>Once your date is set, Robin lists it under <em>Upcoming</em> on the site — friends, neighbours, or strangers can join you until the four seats are filled.</p>
+    </div>
+    <div class="how-step">
+      <div class="num">iv.</div>
+      <h3>Cook &amp; carry home</h3>
+      <p>Show up hungry. Leave with full hands — what you made, what you learned, and a few of Robin's notes for at home.</p>
+    </div>
+  </div>
+</section>
+
+<section id="upcoming" class="upcoming">
+  <div class="upcoming-inner">
+    <div class="section-head">
+      <div class="label">No. 04 · Upcoming</div>
+      <h2>Open <em>spaces</em> at the table</h2>
+      <p class="lede">A mix of seasonal classes Robin has put on the calendar and open classes from students who have already booked. If a date catches your eye, email Robin to claim a seat.</p>
+    </div>
+
+    <div class="schedule-list">
+      
+      
+      <div class="schedule-item">
+        <div class="date-block">
+          <div class="day">17</div>
+          <div class="mo">May</div>
+        </div>
+        <div class="info">
+          <h4>White Dough · Baguettes &amp; Basic Shapes</h4>
+          <p>Saturday, 9am – 12pm · Hands-on bread basics. Beginners welcome. <em>Open class.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">3 seats</div>
+          <div class="l">of 4</div>
+        </div>
+        
+        <a href="#contact" class="book">Reserve</a>
+        
+      </div>
+      
+      <div class="schedule-item">
+        <div class="date-block">
+          <div class="day">07</div>
+          <div class="mo">Jun</div>
+        </div>
+        <div class="info">
+          <h4>Summer Pies · Stone Fruit Season</h4>
+          <p>Saturday, 10am – 2pm · Peach, plum, blueberry — whatever the market has that morning. <em>Seasonal.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">4 seats</div>
+          <div class="l">of 4</div>
+        </div>
+        
+        <a href="#contact" class="book">Reserve</a>
+        
+      </div>
+      
+      <div class="schedule-item">
+        <div class="date-block">
+          <div class="day">12</div>
+          <div class="mo">Jul</div>
+        </div>
+        <div class="info">
+          <h4>Homemade Ice Cream · Three Ways</h4>
+          <p>Saturday, 11am – 2pm · Custard, no-churn, and a sorbet. Cold mornings made worth it. <em>Seasonal.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">4 seats</div>
+          <div class="l">of 4</div>
+        </div>
+        
+        <a href="#contact" class="book">Reserve</a>
+        
+      </div>
+      
+      <div class="schedule-item">
+        <div class="date-block">
+          <div class="day">25</div>
+          <div class="mo">Oct</div>
+        </div>
+        <div class="info">
+          <h4>Holiday Bread Baking · Get Ahead</h4>
+          <p>Saturday, 9am – 1pm · Christmas-morning loaves you can make and freeze. <em>Seasonal.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">4 seats</div>
+          <div class="l">of 4</div>
+        </div>
+        
+        <a href="#contact" class="book">Reserve</a>
+        
+      </div>
+      
+      <div class="schedule-item">
+        <div class="date-block">
+          <div class="day">06</div>
+          <div class="mo">Dec</div>
+        </div>
+        <div class="info">
+          <h4>Christmas Cookie Day · Five Cookies, One Tin</h4>
+          <p>Saturday, 10am – 3pm · Five classics for the holiday tin. Bring a box, take some home. <em>Seasonal.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">4 seats</div>
+          <div class="l">of 4</div>
+        </div>
+        
+        <a href="#contact" class="book">Reserve</a>
+        
+      </div>
+      
+    </div>
+
+    <p class="schedule-note">Don't see what you're looking for? <a href="#contact" style="color:var(--berry);text-decoration:underline;">Email Robin</a> and she'll schedule a class around you.</p>
+  </div>
+</section>
+
+<section id="notes" class="notes">
+  <div class="section-head">
+    <div class="label">No. 05 · Notes</div>
+    <h2>Notes from <em>Robin's Kitchen</em></h2>
+    <p class="lede">Mondays, mostly. Quick thoughts, a recipe, what to do when the dough doesn't rise — and small things from the week worth writing down.</p>
+  </div>
+
+  <div class="notes-grid">
+    
+    
+    <article class="note featured">
+      <a href="/notes/when-dough-doesnt-rise/" style="text-decoration:none;color:inherit;display:block;">
+        
+        <div class="img-wrap">
+          
+          <span class="badge">Latest · Monday Notes</span>
+          
+          <img src="/images/hero-flour.jpg" alt="Robin&#39;s kitchen, mid-morning">
+        </div>
+        
+        <div class="meta-row">
+          <span>Monday Notes</span>
+          <span class="dot">·</span>
+          <span>5 min read</span>
+        </div>
+        <h3>When the dough doesn&#39;t rise — and other small mornings</h3>
+        <p>Last Tuesday I pulled a bowl out from the proofing spot and the dough hadn&#39;t budged. Here&#39;s what I check, in order, before I start over.</p>
+        <span class="read">Read the note →</span>
+      </a>
+    </article>
+    
+    <article class="note">
+      <a href="/notes/saturday-cinnamon-knots/" style="text-decoration:none;color:inherit;display:block;">
+        
+        <div class="img-wrap">
+          
+          <img src="/images/cinnamon-knots.jpg" alt="Cinnamon swirl pastries">
+        </div>
+        
+        <div class="meta-row">
+          <span>Recipes</span>
+          <span class="dot">·</span>
+          <span>4 min read</span>
+        </div>
+        <h3>The Saturday cinnamon knots, with notes</h3>
+        <p>The recipe my B&amp;B guests asked for at every checkout. The trick is in the second proof.</p>
+        <span class="read">Read the note →</span>
+      </a>
+    </article>
+    
+    <article class="note">
+      <a href="/notes/what-i-learned-at-vsb/" style="text-decoration:none;color:inherit;display:block;">
+        
+        <div class="img-wrap">
+          
+          <img src="/images/meatpies.jpg" alt="Slow-simmered bolognese sauce">
+        </div>
+        
+        <div class="meta-row">
+          <span>From Bologna</span>
+          <span class="dot">·</span>
+          <span>6 min read</span>
+        </div>
+        <h3>What I learned at VSB — and the one rule I never break</h3>
+        <p>A few notes from a week at La Vecchia Scuola Bolognese, and the small Italian habit that changed how I cook at home.</p>
+        <span class="read">Read the note →</span>
+      </a>
+    </article>
+    
+  </div>
+
+  <div class="notes-cta">
+    <a href="/notes/">Read all notes →</a>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="seal"><img src="/images/logo.jpg" alt="Applewood Manor Culinary"></div>
+    <h2>Pull up a <em>chair.</em></h2>
+    <p>Tell Robin which class, when you'd like to come, and how many of you. She writes back personally — usually within a day or two.</p>
+    <a href="mailto:culinary@applewoodmanor.com" class="email-btn">culinary@applewoodmanor.com</a>
+    <div class="small">Asheville · North Carolina · By appointment</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="brand-blk">
+      <div class="logo-row">
+        <img src="/images/logo.jpg" alt="Applewood Manor Culinary">
+        <div class="name">Applewood Manor<em>Culinary</em></div>
+      </div>
+      <p>The home kitchen of Robin Collins,</p>
+      <p>at Applewood Manor — Asheville, NC.</p>
+      <p style="margin-top:14px;font-style:italic;">Cooking and bread-baking classes,<br>by appointment, year-round.</p>
+    </div>
+    <div>
+      <h4>The Site</h4>
+      <ul>
+        <li><a href="/#about">About Robin</a></li>
+        <li><a href="/#classes">Classes</a></li>
+        <li><a href="/#how">How it works</a></li>
+        <li><a href="/#upcoming">Upcoming dates</a></li>
+        <li><a href="/#notes">Notes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="https://www.applewoodmanor.com" target="_blank">The Manor</a></li>
+        <li><a href="https://www.instagram.com/applewood_manor/" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href="mailto:culinary@applewoodmanor.com">culinary@applewoodmanor.com</a></li>
+        <li><a href="/#contact">Book a class</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div>© 2026 Applewood Manor Culinary · Robin Collins, Asheville NC</div>
+    <div class="links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const t = document.querySelector(id);
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 60, behavior: 'smooth' }); }
+      }
+    });
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.class-card, .how-step, .schedule-item, .creds-col, .note, .about-photo, .about-text').forEach((el, i) => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = `opacity 0.7s ease ${(i % 6) * 0.05}s, transform 0.7s ease ${(i % 6) * 0.05}s`;
+    io.observe(el);
+  });
+</script>
+
+</body>
+</html>

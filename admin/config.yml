@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: ziarnooo/Robins_Kitchen
+  branch: main
+  auth_type: pkce
+  app_id: REPLACE_WITH_GITHUB_OAUTH_APP_CLIENT_ID
+
+publish_mode: simple
+
+media_folder: "images"
+public_folder: "/images"
+
+site_url: https://applewoodculinary.com
+display_url: https://applewoodculinary.com
+logo_url: /images/logo.jpg
+
+collections:
+  - name: classes
+    label: Classes (Robin's catalog)
+    label_singular: Class
+    folder: content/classes
+    create: true
+    slug: "{{fields.number}}-{{slug}}"
+    identifier_field: title
+    summary: "{{number}}. {{title}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: number, label: Display order, widget: number, min: 1, max: 99, hint: "Lower numbers appear first" }
+      - { name: category, label: Category, widget: select, options: ["Everyday Bread Baking", "Home Cooking · Dinner Series", "Home Cooking · Make-ahead", "Home Cooking · Pies & Tarts", "For groups · For seasons · For you"] }
+      - { name: tag_short, label: "Card tag (e.g. '01 / Bread')", widget: string }
+      - { name: duration, label: Duration, widget: string, hint: "e.g. '3 hrs', '4 hrs', 'By request'" }
+      - { name: image, label: Photo, widget: image, required: false }
+      - { name: image_alt, label: Photo alt text, widget: string, required: false }
+      - { name: description, label: "Short description (1-2 sentences)", widget: text }
+      - { name: price_line, label: Price text, widget: string, default: "From $175 · contact for details" }
+      - { name: show_in_catalog, label: Show in main catalog, widget: boolean, default: true, hint: "Uncheck for seasonal one-offs that only appear in Upcoming Dates" }
+      - { name: active, label: Active, widget: boolean, default: true, hint: "Uncheck to hide from site without deleting" }
+
+  - name: upcoming
+    label: Upcoming Dates (when Robin teaches)
+    label_singular: Date
+    folder: content/upcoming
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: class_title
+    summary: "{{date | date('YYYY-MM-DD')}} — {{class_title}}"
+    fields:
+      - { name: date, label: Date, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, picker_utc: false }
+      - { name: class_relation, label: "Which class is this?", widget: relation, collection: classes, search_fields: [title], value_field: title, display_fields: [title] }
+      - { name: class_title, label: "Display title (more specific than class name, optional)", widget: string, required: false, hint: "e.g. 'White Dough · Baguettes & Basic Shapes'. Leave blank to use class name." }
+      - { name: time_description, label: Time & description, widget: string, hint: "e.g. 'Saturday, 9am – 12pm · Hands-on bread basics. Beginners welcome.'" }
+      - { name: type, label: Type, widget: select, options: ["Open class", "Seasonal"], default: "Open class" }
+      - { name: seats_available, label: Seats available, widget: number, min: 0, max: 4, default: 4 }
+      - { name: seats_total, label: Seats total, widget: number, default: 4 }
+      - { name: status, label: Status, widget: select, options: ["Open", "Full · Waitlist", "Cancelled"], default: "Open" }
+
+  - name: notes
+    label: Notes (Robin's blog)
+    label_singular: Note
+    folder: content/notes
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    identifier_field: title
+    summary: "{{date | date('YYYY-MM-DD')}} — {{title}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Publish date, widget: datetime }
+      - { name: category, label: Category, widget: select, options: ["Monday Notes", "Recipes", "From Bologna", "From the kitchen", "Seasonal"], create: true }
+      - { name: read_time, label: Read time, widget: string, default: "5 min read" }
+      - { name: hero_image, label: Hero image, widget: image, required: false }
+      - { name: image_alt, label: Image alt text, widget: string, required: false }
+      - { name: excerpt, label: "Excerpt (shows on cards)", widget: text }
+      - { name: featured, label: "Featured (large card on homepage)", widget: boolean, default: false }
+      - { name: published, label: Published, widget: boolean, default: false, hint: "Uncheck to save as draft" }
+      - { name: body, label: Body, widget: markdown }
