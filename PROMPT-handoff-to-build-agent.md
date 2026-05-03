@@ -27,7 +27,7 @@ The site is **already designed** — there is a finished, polished single-file H
 
 - **Static site generator:** Eleventy (11ty) v3.x — minimal config, supports `.njk` templates and markdown collections
 - **CMS:** Decap CMS (open-source, free, formerly Netlify CMS) — pure JS, runs in browser, edits markdown in repo
-- **Auth:** GitHub OAuth PKCE — browser-only OAuth, no backend server needed. User clicks "Login with GitHub" → PKCE flow → CMS opens. App ID goes in `admin/config.yml`.
+- **Auth:** GitHub OAuth via **Netlify OAuth proxy** — Netlify acts as the OAuth middleman (free). Site is hosted on GitHub Pages; Netlify is used only for authentication. **Note: GitHub PKCE does not work reliably with Decap CMS or Sveltia CMS — use Netlify OAuth proxy.**
 - **Hosting:** GitHub Pages (free, serves the `gh-pages` branch). Auto-deploys via GitHub Actions on every push to `main`.
 - **Repo:** Public GitHub repo at `ziarnooo/Robins_Kitchen`
 - **Domain:** `applewoodculinary.com` — A records + CNAME `www` at DNS registrar pointing to GitHub Pages IPs
@@ -1038,19 +1038,38 @@ Manual steps for Dominik to do in browser after the first push to `main` trigger
 
 GitHub Actions will push `_site/` to the `gh-pages` branch automatically on every push to `main`.
 
-### Step 19: Create GitHub OAuth App for Decap CMS (PKCE)
+### Step 19: Configure Netlify OAuth proxy for Decap CMS
 
-Decap CMS uses PKCE auth — a browser-only OAuth flow. No backend server, no client secret needed. You only need a **Client ID** from a GitHub OAuth App.
+**Important:** GitHub PKCE OAuth does not work reliably with Decap CMS or Sveltia CMS. Use Netlify as a free OAuth proxy instead. The site stays on GitHub Pages — Netlify is only used for authentication.
 
-1. Go to GitHub → Settings → Developer settings → OAuth Apps → "New OAuth App"
-2. Fill in:
+1. Create a GitHub OAuth App:
+   - Go to GitHub → Settings → Developer settings → OAuth Apps → "New OAuth App"
    - Application name: `Applewood Culinary CMS`
    - Homepage URL: `https://applewoodculinary.com`
-   - Authorization callback URL: `https://applewoodculinary.com/admin/`
-3. Click "Register application"
-4. Copy the **Client ID** (you do NOT need a client secret)
-5. In `admin/config.yml`, replace `REPLACE_WITH_GITHUB_OAUTH_APP_CLIENT_ID` with the Client ID
-6. Commit and push — CMS will now authenticate via GitHub PKCE
+   - Authorization callback URL: **`https://api.netlify.com/auth/done`**
+   - Click "Register application"
+   - Copy **Client ID** and generate + copy **Client Secret** (both needed)
+
+2. Connect the repo to Netlify:
+   - Go to `https://app.netlify.com` → Add new site → Import from Git → GitHub → `ziarnooo/Robins_Kitchen`
+   - Build command: `npm run build`, Publish directory: `_site`
+   - Deploy (Netlify will build the site, but we don't use Netlify for hosting)
+   - Note the Netlify subdomain (e.g. `gleaming-froyo-4a9351.netlify.app`)
+
+3. Configure OAuth in Netlify:
+   - Site configuration → Access & security → OAuth → Install provider → GitHub
+   - Paste Client ID and Client Secret → Save
+
+4. Ensure `admin/config.yml` has:
+   ```yaml
+   backend:
+     name: github
+     repo: ziarnooo/Robins_Kitchen
+     branch: main
+     base_url: https://api.netlify.com
+     site_domain: <your-netlify-subdomain>.netlify.app
+   ```
+   The `site_domain` field is critical — it tells Decap CMS to send the Netlify subdomain as `site_id` to the OAuth proxy. Without it, Decap CMS sends `applewoodculinary.com` which Netlify can't match.
 
 Now `https://applewoodculinary.com/admin/` should show the Decap login screen. Click "Login with GitHub" → authorize → CMS opens.
 
@@ -1112,7 +1131,7 @@ When you start, ask Dominik to paste the HTML if it's not already in the prompt.
 
 - **Eleventy build fails:** check `.eleventy.js` syntax, check that all template files exist, check that markdown front matter is valid YAML
 - **GitHub Actions build fails:** open the Actions tab in the repo, read the build log. Usually: missing dependency, wrong Node version, or Nunjucks syntax error in a template.
-- **Decap CMS won't log in:** GitHub OAuth App callback URL must match exactly (`https://applewoodculinary.com/admin/`). Check that `app_id` in `admin/config.yml` is the correct Client ID.
+- **Decap CMS won't log in:** Check that (1) GitHub OAuth App callback URL is `https://api.netlify.com/auth/done`, (2) Netlify has the OAuth provider configured with Client ID + Secret, (3) `site_domain` in `admin/config.yml` matches the Netlify subdomain exactly. Do NOT use PKCE — it doesn't work reliably with GitHub.
 - **Decap CMS shows 404 at `/admin/`:** `admin/index.html` or `admin/config.yml` not being copied. Check `addPassthroughCopy("admin")` in `.eleventy.js`.
 - **Images don't load:** check `addPassthroughCopy("images")` in `.eleventy.js`
 - **Note page renders blank:** check that `pagination` is set up correctly in `notes/index.njk` and that at least one note has `published: true`

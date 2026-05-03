@@ -169,7 +169,9 @@ Homepage shows the 3 most recent published notes. Featured note appears first/la
 
 ## Decap CMS (`admin/config.yml`)
 
-- **Backend:** GitHub OAuth via PKCE (browser-only, no server needed — user authorizes GitHub on first login)
+- **Backend:** GitHub OAuth via **Netlify OAuth proxy** (`base_url: https://api.netlify.com`) — Netlify acts as the OAuth middleman, site is still hosted on GitHub Pages
+- **Netlify site:** `gleaming-froyo-4a9351.netlify.app` (connected to the same repo, used only for OAuth)
+- **`site_domain`:** set to `gleaming-froyo-4a9351.netlify.app` so Netlify can match the OAuth credentials
 - **Media folder:** `images/` — uploads go here, public path is `/images/`
 - **Login URL:** `https://applewoodculinary.com/admin/`
 
@@ -211,19 +213,30 @@ The `gh-pages` branch is what GitHub Pages serves. **Never edit `gh-pages` direc
 
 ## Decap CMS setup (one-time, done by Dominik)
 
-CMS uses **PKCE auth** — pure browser OAuth, no backend server needed.
+CMS uses **Netlify OAuth proxy** — Netlify acts as the OAuth middleman between the browser and GitHub. The site itself is hosted on GitHub Pages; Netlify is only used for authentication.
 
-Steps to activate:
-1. Go to GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
-2. Fill in:
-   - Application name: `Applewood Culinary CMS`
+**What's already configured:**
+- Netlify site: `gleaming-froyo-4a9351.netlify.app` (repo connected, OAuth provider installed)
+- GitHub OAuth App: callback URL `https://api.netlify.com/auth/done`, credentials stored in Netlify
+
+**If you ever need to redo this from scratch:**
+1. Create a GitHub OAuth App:
    - Homepage URL: `https://applewoodculinary.com`
-   - Authorization callback URL: `https://applewoodculinary.com/admin/`
-3. Click Register. Copy the **Client ID**.
-4. In `admin/config.yml`, replace `REPLACE_WITH_GITHUB_OAUTH_APP_CLIENT_ID` with the Client ID.
-5. Commit and push — CMS will use GitHub login automatically.
+   - Authorization callback URL: `https://api.netlify.com/auth/done`
+   - Copy **Client ID** and **Client Secret** (both needed)
+2. Create a Netlify account, connect the `ziarnooo/Robins_Kitchen` repo
+3. In Netlify: Site configuration → Access & security → OAuth → Install provider → GitHub → paste Client ID + Secret
+4. Ensure `admin/config.yml` has:
+   ```yaml
+   backend:
+     name: github
+     repo: ziarnooo/Robins_Kitchen
+     branch: main
+     base_url: https://api.netlify.com
+     site_domain: gleaming-froyo-4a9351.netlify.app
+   ```
 
-**No client secret needed** — PKCE handles security without a server.
+**Note:** GitHub PKCE OAuth does not work reliably with either Decap CMS or Sveltia CMS — use Netlify OAuth proxy.
 
 ---
 
@@ -262,7 +275,7 @@ The `CNAME` file in the repo root is already set to `applewoodculinary.com` — 
 | `.gitignore` | ✅ done | |
 | `.github/workflows/deploy.yml` | ✅ done | GitHub Actions → gh-pages |
 | `CNAME` | ✅ done | applewoodculinary.com |
-| `admin/index.html` + `config.yml` | ✅ done | Decap CMS, 3 collections, PKCE auth |
+| `admin/index.html` + `config.yml` | ✅ done | Decap CMS, 3 collections, Netlify OAuth proxy |
 | `_data/site.json` | ✅ done | |
 | `_data/bio.json` | ✅ done | |
 | `_data/credentials.json` | ✅ done | |
@@ -273,10 +286,10 @@ The `CNAME` file in the repo root is already set to `applewoodculinary.com` — 
 | `index.njk` homepage | ✅ done | |
 | `notes/index.njk` | ✅ done | pagination, 3 pages generated |
 | Local dev test | ✅ done | 12 cards, 5 dates, 3 notes, 4 HTML files |
-| Git commit + push | ⏳ pending | |
-| GitHub repo Pages settings | ⏳ pending | set source = gh-pages, custom domain |
-| GitHub OAuth App (PKCE) | ⏳ pending | manual — Dominik does in browser |
-| Custom domain DNS | ⏳ pending | A records + CNAME www at registrar |
+| Git commit + push | ✅ done | |
+| GitHub repo Pages settings | ✅ done | gh-pages branch, applewoodculinary.com |
+| Netlify OAuth proxy | ✅ done | gleaming-froyo-4a9351.netlify.app |
+| Custom domain DNS | ✅ done | A records + CNAME www at registrar |
 | ROBIN-WALKTHROUGH.md | ⏳ pending | |
 
 ---
