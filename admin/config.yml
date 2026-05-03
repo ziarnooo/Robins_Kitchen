@@ -2,8 +2,7 @@ backend:
   name: github
   repo: ziarnooo/Robins_Kitchen
   branch: main
-  auth_type: pkce
-  app_id: Ov23liYOvbPT1xopYpQg
+  base_url: https://api.netlify.com
 
 publish_mode: simple
 
