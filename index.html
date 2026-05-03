@@ -463,6 +463,9 @@
     font-family: 'Fraunces', serif; font-size: 10px; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--berry);
   }
+  .notes-grid--all { grid-template-columns: repeat(3, 1fr); }
+  .notes-list-inner { max-width: 1280px; margin: 0 auto; }
+
   .notes-cta {
     text-align: center; margin-top: 60px;
     padding-top: 40px; border-top: 1px solid var(--rule);
@@ -629,6 +632,7 @@
     .classes-grid { grid-template-columns: 1fr; gap: 40px; }
     .how-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     .notes-grid { grid-template-columns: 1fr; gap: 40px; }
+    .notes-grid--all { grid-template-columns: 1fr; }
     .note.featured h3 { font-size: 28px; }
     .schedule-item { grid-template-columns: auto 1fr; gap: 16px; row-gap: 12px; }
     .schedule-item .date-block { padding-right: 16px; }
