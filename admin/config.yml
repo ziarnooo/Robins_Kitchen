@@ -3,6 +3,7 @@ backend:
   repo: ziarnooo/Robins_Kitchen
   branch: main
   base_url: https://api.netlify.com
+  site_domain: gleaming-froyo-4a9351.netlify.app
 
 publish_mode: simple
 
