@@ -9,7 +9,7 @@ publish_mode: simple
 media_folder: "images"
 public_folder: "/images"
 
-site_url: https://applewoodculinary.com
+site_url: https://gleaming-froyo-4a9351.netlify.app
 display_url: https://applewoodculinary.com
 logo_url: /images/logo.jpg
 
