@@ -1,0 +1,44 @@
+---
+layout: base.njk
+permalink: /notes/
+pageTitle: Notes — Applewood Manor Culinary
+---
+
+<section class="notes notes-list-page">
+  <div class="notes-list-inner">
+    <div class="section-head">
+      <div class="label">Robin's Kitchen</div>
+      <h2>All <em>notes</em></h2>
+      <p class="lede">Mondays, mostly. Quick thoughts, a recipe, what to do when the dough doesn't rise — and small things from the week worth writing down.</p>
+    </div>
+
+    <div class="notes-grid notes-grid--all">
+      {% set allNotes = collections.notes | publishedOnly | byDateDesc %}
+      {% for note in allNotes %}
+      <article class="note">
+        <a href="/notes/{{ note.fileSlug }}/" style="text-decoration:none;color:inherit;display:block;">
+          {% if note.data.hero_image %}
+          <div class="img-wrap">
+            <img src="{{ note.data.hero_image }}" alt="{{ note.data.image_alt }}">
+          </div>
+          {% endif %}
+          <div class="meta-row">
+            <span>{{ note.data.category }}</span>
+            <span class="dot">·</span>
+            <span>{{ note.data.date | dateFull }}</span>
+            <span class="dot">·</span>
+            <span>{{ note.data.read_time }}</span>
+          </div>
+          <h3>{{ note.data.title }}</h3>
+          <p>{{ note.data.excerpt }}</p>
+          <span class="read">Read the note →</span>
+        </a>
+      </article>
+      {% else %}
+      <p style="grid-column:1/-1;text-align:center;font-style:italic;color:var(--ink-soft);padding:60px 0;">No notes yet — check back soon.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "footer.njk" %}
