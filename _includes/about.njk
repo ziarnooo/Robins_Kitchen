@@ -1,0 +1,16 @@
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-photo">
+      <img src="/images/hero-hands.jpg" alt="Robin shaping a baguette by hand">
+      <div class="badge"><span>Robin Collins</span>Applewood Manor Culinary</div>
+    </div>
+    <div class="about-text">
+      <div class="label">No. 01 · About Robin</div>
+      <h2>A passion <em>passed down</em>, and shared at the table.</h2>
+      {% for para in bio.paragraphs %}
+      <p>{{ para }}</p>
+      {% endfor %}
+      <div class="signature">— Robin</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section id="notes" class="notes">
+  <div class="section-head">
+    <div class="label">No. 05 · Notes</div>
+    <h2>Notes from <em>Robin's Kitchen</em></h2>
+    <p class="lede">Mondays, mostly. Quick thoughts, a recipe, what to do when the dough doesn't rise — and small things from the week worth writing down.</p>
+  </div>
+
+  <div class="notes-grid">
+    {% set recentNotes = collections.notes | publishedOnly | byDateDesc | featuredFirst | limit(3) %}
+    {% for note in recentNotes %}
+    <article class="note{% if loop.first %} featured{% endif %}">
+      <a href="/notes/{{ note.fileSlug }}/" style="text-decoration:none;color:inherit;display:block;">
+        {% if note.data.hero_image %}
+        <div class="img-wrap">
+          {% if loop.first %}
+          <span class="badge">Latest · {{ note.data.category }}</span>
+          {% endif %}
+          <img src="{{ note.data.hero_image }}" alt="{{ note.data.image_alt }}">
+        </div>
+        {% endif %}
+        <div class="meta-row">
+          <span>{{ note.data.category }}</span>
+          <span class="dot">·</span>
+          <span>{{ note.data.read_time }}</span>
+        </div>
+        <h3>{{ note.data.title }}</h3>
+        <p>{{ note.data.excerpt }}</p>
+        <span class="read">Read the note →</span>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="notes-cta">
+    <a href="/notes/">Read all notes →</a>
+  </div>
+</section>

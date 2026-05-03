@@ -1,0 +1,38 @@
+---
+pagination:
+  data: collections.notes
+  size: 1
+  alias: note
+  filter:
+    - unpublished
+permalink: "/notes/{{ note.fileSlug }}/"
+layout: base.njk
+eleventyComputed:
+  pageTitle: "{{ note.data.title }} — Notes from Robin's Kitchen"
+---
+
+<article class="note-page">
+  {% if note.data.hero_image %}
+  <div class="note-hero">
+    <img src="{{ note.data.hero_image }}" alt="{{ note.data.image_alt }}">
+  </div>
+  {% endif %}
+
+  <div class="note-body">
+    <div class="note-meta">
+      <span>{{ note.data.category }}</span>
+      <span class="dot">·</span>
+      <span>{{ note.data.date | dateFull }}</span>
+      <span class="dot">·</span>
+      <span>{{ note.data.read_time }}</span>
+    </div>
+    <h1>{{ note.data.title }}</h1>
+    <p class="note-lede">{{ note.data.excerpt }}</p>
+    <div class="note-content">
+      {{ note.templateContent | safe }}
+    </div>
+    <a class="back-link" href="/#notes">← All notes</a>
+  </div>
+</article>
+
+{% include "footer.njk" %}

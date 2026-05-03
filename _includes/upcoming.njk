@@ -1,0 +1,38 @@
+<section id="upcoming" class="upcoming">
+  <div class="upcoming-inner">
+    <div class="section-head">
+      <div class="label">No. 04 · Upcoming</div>
+      <h2>Open <em>spaces</em> at the table</h2>
+      <p class="lede">A mix of seasonal classes Robin has put on the calendar and open classes from students who have already booked. If a date catches your eye, email Robin to claim a seat.</p>
+    </div>
+
+    <div class="schedule-list">
+      {% set upcomingDates = collections.upcoming | futureOnly | byDateAsc %}
+      {% for item in upcomingDates | limit(10) %}
+      <div class="schedule-item{% if item.data.status == 'Full · Waitlist' %} full{% endif %}">
+        <div class="date-block">
+          <div class="day">{{ item.data.date | dateDay }}</div>
+          <div class="mo">{{ item.data.date | dateMonth }}</div>
+        </div>
+        <div class="info">
+          <h4>{{ item.data.class_title if item.data.class_title else item.data.class_relation }}</h4>
+          <p>{{ item.data.time_description }} <em>{{ item.data.type }}.</em></p>
+        </div>
+        <div class="seats">
+          <div class="n">{{ item.data.seats_available }} seat{{ 's' if item.data.seats_available != 1 }}</div>
+          <div class="l">of {{ item.data.seats_total }}</div>
+        </div>
+        {% if item.data.status == 'Full · Waitlist' %}
+        <span class="book">Waitlist</span>
+        {% else %}
+        <a href="#contact" class="book">Reserve</a>
+        {% endif %}
+      </div>
+      {% else %}
+      <p style="padding: 40px 0; text-align:center; font-style:italic; color:var(--ink-soft);">No upcoming dates right now — email Robin to schedule.</p>
+      {% endfor %}
+    </div>
+
+    <p class="schedule-note">Don't see what you're looking for? <a href="#contact" style="color:var(--berry);text-decoration:underline;">Email Robin</a> and she'll schedule a class around you.</p>
+  </div>
+</section>
