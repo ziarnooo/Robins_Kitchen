@@ -3,14 +3,13 @@ backend:
   repo: ziarnooo/Robins_Kitchen
   branch: main
   base_url: https://api.netlify.com
-  site_domain: gleaming-froyo-4a9351.netlify.app
 
 publish_mode: simple
 
 media_folder: "images"
 public_folder: "/images"
 
-site_url: https://gleaming-froyo-4a9351.netlify.app
+site_url: https://applewoodculinary.com
 display_url: https://applewoodculinary.com
 logo_url: /images/logo.jpg
 
