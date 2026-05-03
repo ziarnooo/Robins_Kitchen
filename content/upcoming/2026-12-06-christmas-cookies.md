@@ -1,8 +1,9 @@
 ---
-date: 2026-12-06
+date: 2026-12-12
 class_relation: Build Your Own Class
-class_title: Christmas Cookie Day · Five Cookies, One Tin
-time_description: "Saturday, 10am – 3pm · Five classics for the holiday tin. Bring a box, take some home."
+class_title: Christmas Cookie Day - Bourbon Balls, Gingerbread Cutout cookies, Sugar Cookies
+time_description: Saturday, 10am – 2pm · Classics for the holiday tin. Bring a
+  box, take some home.
 type: Seasonal
 seats_available: 4
 seats_total: 4
