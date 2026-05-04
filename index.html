@@ -6,6 +6,14 @@
 <title>Applewood Manor Culinary — Robin Collins</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3TQFMR9N1F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3TQFMR9N1F');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..600&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -288,7 +296,10 @@
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 56px 40px; max-width: 1280px; margin: 0 auto;
   }
-  .class-card { cursor: pointer; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+  .class-card {
+    cursor: pointer; transition: transform .4s cubic-bezier(.2,.7,.2,1);
+    display: block; text-decoration: none; color: inherit;
+  }
   .class-card:hover { transform: translateY(-6px); }
   .class-card .img-wrap {
     aspect-ratio: 4 / 5; overflow: hidden; background: var(--rule);
@@ -762,7 +773,7 @@
 
   <div class="classes-grid">
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">01 / Bread</span>
         <span class="duration">3 hrs</span>
@@ -779,9 +790,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">02 / Bread</span>
         <span class="duration">4 hrs</span>
@@ -798,9 +809,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">03 / Sweet</span>
         <span class="duration">3 hrs</span>
@@ -817,9 +828,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">04 / Bread</span>
         <span class="duration">3 hrs</span>
@@ -836,9 +847,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">05 / Bread</span>
         <span class="duration">3 hrs</span>
@@ -855,9 +866,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">06 / Bread</span>
         <span class="duration">4 hrs</span>
@@ -874,9 +885,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">07 / Pasta</span>
         <span class="duration">3 hrs</span>
@@ -893,9 +904,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">08 / Pasta</span>
         <span class="duration">4 hrs</span>
@@ -912,9 +923,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">09 / Pasta</span>
         <span class="duration">3 hrs</span>
@@ -931,9 +942,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">10 / Make-ahead</span>
         <span class="duration">3 hrs</span>
@@ -950,9 +961,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">11 / Make-ahead</span>
         <span class="duration">3 hrs</span>
@@ -969,9 +980,9 @@
           Book this class →
         </div>
       </div>
-    </article>
+    </a>
     
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">12 / Custom</span>
         <span class="duration">By request</span>
@@ -988,7 +999,7 @@
           Get in touch →
         </div>
       </div>
-    </article>
+    </a>
     
   </div>
 </section>
