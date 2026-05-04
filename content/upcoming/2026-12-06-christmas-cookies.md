@@ -4,7 +4,8 @@ class_relation: Build Your Own Class
 class_title: Christmas Cookie Day - Bourbon Balls, Gingerbread Cutout cookies &
   Classic Sugar Cookies
 time_description: Saturday, 10am – 2pm · Classics for the holiday tin. Bring a
-  box, take some home.
+  box, take some home (date & times are flexible, based on first person who
+  books)
 type: Seasonal
 seats_available: 4
 seats_total: 4
