@@ -1,23 +1,22 @@
 ---
-title: The Saturday cinnamon knots, with notes
+title: Applewood Manor House Cookies
 date: 2026-04-27
 category: Recipes
 read_time: 4 min read
-hero_image: /images/cinnamon-knots.jpg
-image_alt: Cinnamon swirl pastries
-excerpt: The recipe my B&B guests asked for at every checkout. The trick is in the second proof.
+hero_image: /images/237a4498.jpg
+image_alt: Chocolate Chip BNB House Cookies
+excerpt: "The recipe my B&B guests asked for at every checkout. "
 featured: false
 published: true
 ---
+When we bought Applewood Manor, my husband insisted on one thing.  That I make his favorite cookies and put the each guest room.  I put a package of 4 cookies, but the guests always wanted more, so we sold the cookies in packs of 6.  And it is the recipe that was most asked for by our guests.
 
-*This is a placeholder note. Robin will replace this content with her actual writing.*
+The story behind my cookies.  
 
-For four years at the B&B, these were the thing guests would ask about on the way out the door. Some of them I gave the recipe to. Most of them I told to come back.
+Everyone has their idea of the perfect cookie, for my family it's crispy and chewy but never cakey.  My recipe is a basic chocolate chip cookies recipe with a few techniques that give it the crispy/chewy texture, with 2 types of chocolate chips and the "secret" ingredient (toffee bits). I never thought it was such a big deal, but when I made these cookies for my family everyone would eat them until our stomach hurt.  My husband called them "crack" cookies because he couldn't stop eating them.  
 
-The dough is enriched — milk, butter, a little sugar — which makes it slower to rise than a lean white dough but more forgiving with timing. You can mix it the night before, leave it in the fridge, and shape in the morning while the kitchen is still quiet.
+For the bed and breakfast, I make the dough and using an ice cream scoop, I make balls and put them on a cookie sheet with parchment paper. Then I freeze the balls and keep the frozen cookie balls in a plastic bin in the freezer.  This way, we can take out 6 cookies and not overeat them.  This is also the method I used so that each guest would have freshly baked cookies upon arrival..
 
-The trick is the second proof. After you've shaped the knots, give them a full hour at room temperature before they go into the oven. Skip this step and they'll bake up dense; let them go too long and they'll collapse. You're looking for them to roughly double, and to spring back slowly when you press a finger gently into the side.
-
-Glaze while they're still warm but not hot. The glaze sets in a beautiful matte sheen if the buns are around 60°C; melt and pool if they're hotter than that.
+If you would like the recipe, email me at: culinary@applewoodmanor.com.  I'm happy to share it.
 
 — Robin
