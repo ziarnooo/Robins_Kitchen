@@ -7,7 +7,7 @@
 
   <div class="classes-grid">
     {% for class in collections.classes | inCatalog | byNumberAsc %}
-    <article class="class-card">
+    <a class="class-card" href="/#contact">
       <div class="img-wrap">
         <span class="num-tag">{{ class.data.tag_short }}</span>
         <span class="duration">{{ class.data.duration }}</span>
@@ -24,7 +24,7 @@
           {% if class.data.number == 12 %}Get in touch →{% else %}Book this class →{% endif %}
         </div>
       </div>
-    </article>
+    </a>
     {% endfor %}
   </div>
 </section>

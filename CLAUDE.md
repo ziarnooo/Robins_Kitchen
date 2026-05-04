@@ -290,6 +290,8 @@ The `CNAME` file in the repo root is already set to `applewoodculinary.com` — 
 | GitHub repo Pages settings | ✅ done | gh-pages branch, applewoodculinary.com |
 | Netlify OAuth proxy | ✅ done | gleaming-froyo-4a9351.netlify.app |
 | Custom domain DNS | ✅ done | A records + CNAME www at registrar |
+| Google Analytics (gtag.js) | ✅ done | G-3TQFMR9N1F, added to base.njk `<head>` |
+| Class cards → Book this class link | ✅ done | `.class-card` is now `<a href="/#contact">` |
 | ROBIN-WALKTHROUGH.md | ⏳ pending | |
 
 ---
