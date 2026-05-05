@@ -119,6 +119,10 @@ Robin's blog. Each note gets its own page at `/notes/<slug>/`.
 
 Key fields: `title`, `date`, `category`, `excerpt`, `featured` (boolean — one note can be featured/large on homepage), `published` (set to `false` to draft).
 
+**Images — two separate fields:**
+- `thumbnail` + `thumbnail_alt` — shown on listing cards (homepage + `/notes/` index). Set this for every note.
+- `hero_image` + `image_alt` — shown as the full-width hero on the note's own page. Optional: if omitted, the template automatically falls back to `thumbnail`.
+
 Homepage shows the 3 most recent published notes. Featured note appears first/large.
 
 ---

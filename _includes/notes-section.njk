@@ -10,12 +10,13 @@
     {% for note in recentNotes %}
     <article class="note{% if loop.first %} featured{% endif %}">
       <a href="/notes/{{ note.fileSlug }}/" style="text-decoration:none;color:inherit;display:block;">
-        {% if note.data.hero_image %}
+        {% set cardImage = note.data.thumbnail or note.data.hero_image %}
+        {% if cardImage %}
         <div class="img-wrap">
           {% if loop.first %}
           <span class="badge">Latest · {{ note.data.category }}</span>
           {% endif %}
-          <img src="{{ note.data.hero_image }}" alt="{{ note.data.image_alt }}">
+          <img src="{{ cardImage }}" alt="{{ note.data.thumbnail_alt or note.data.image_alt }}">
         </div>
         {% endif %}
         <div class="meta-row">

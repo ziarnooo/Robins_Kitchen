@@ -66,8 +66,10 @@ collections:
       - { name: date, label: Publish date, widget: datetime }
       - { name: category, label: Category, widget: select, options: ["Monday Notes", "Recipes", "From Bologna", "From the kitchen", "Seasonal"], create: true }
       - { name: read_time, label: Read time, widget: string, default: "5 min read" }
-      - { name: hero_image, label: Hero image, widget: image, required: false }
-      - { name: image_alt, label: Image alt text, widget: string, required: false }
+      - { name: thumbnail, label: "Thumbnail (card image — shown in the notes listing)", widget: image, required: false }
+      - { name: thumbnail_alt, label: Thumbnail alt text, widget: string, required: false }
+      - { name: hero_image, label: "Hero image (shown at the top of the note's own page — leave blank to reuse thumbnail)", widget: image, required: false }
+      - { name: image_alt, label: Hero image alt text, widget: string, required: false }
       - { name: excerpt, label: "Excerpt (shows on cards)", widget: text }
       - { name: featured, label: "Featured (large card on homepage)", widget: boolean, default: false }
       - { name: published, label: Published, widget: boolean, default: false, hint: "Uncheck to save as draft" }

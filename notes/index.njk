@@ -12,9 +12,10 @@ eleventyComputed:
 ---
 
 <article class="note-page">
-  {% if note.data.hero_image %}
+  {% set heroImage = note.data.hero_image or note.data.thumbnail %}
+  {% if heroImage %}
   <div class="note-hero">
-    <img src="{{ note.data.hero_image }}" alt="{{ note.data.image_alt }}">
+    <img src="{{ heroImage }}" alt="{{ note.data.image_alt or note.data.thumbnail_alt }}">
   </div>
   {% endif %}
 
