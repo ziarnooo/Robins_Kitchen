@@ -4,7 +4,7 @@ date: 2026-04-20
 category: From Bologna
 read_time: 6 min read
 thumbnail: /images/7a2251eb-5cce-4d0f-a5ac-74b5fe2552e8.jpg
-hero_image: ""
+hero_image: /images/pasta.jpg
 image_alt: Slow-simmered bolognese sauce
 excerpt: "A few notes from a week at La Vecchia Scuola Bolognese (VSB) "
 featured: false
