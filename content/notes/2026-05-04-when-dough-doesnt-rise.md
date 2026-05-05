@@ -3,6 +3,7 @@ title: When the dough doesn't rise...
 date: 2026-05-04
 category: Monday Notes
 read_time: 5 min read
+thumbnail: /images/starter.jpg
 hero_image: /images/675a2187.jpg
 image_alt: Robin's kitchen, mid-morning
 excerpt: Sometimes the dough just won't rise....
