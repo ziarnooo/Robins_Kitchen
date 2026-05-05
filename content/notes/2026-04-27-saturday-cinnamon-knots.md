@@ -3,8 +3,8 @@ title: Applewood Manor House Cookies
 date: 2026-04-27
 category: Recipes
 read_time: 4 min read
-thumbnail: /images/237a4470.jpg
-hero_image: /images/237a4498.jpg
+thumbnail: /images/237a4498.jpg
+hero_image: /images/237a4470.jpg
 image_alt: Chocolate Chip BNB House Cookies
 excerpt: "The recipe my B&B guests asked for at every checkout. "
 featured: false
