@@ -1,6 +1,6 @@
 ---
 title: Summer Flamiche or French tart
-date: 2026-06-02T18:59:00.000-04:00
+date: 2026-06-02T19:04:00.000-04:00
 category: Monday Notes
 read_time: 5 min read
 thumbnail: /images/img_9301.jpeg
