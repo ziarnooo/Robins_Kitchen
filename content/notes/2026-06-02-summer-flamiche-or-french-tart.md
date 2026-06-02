@@ -5,7 +5,7 @@ category: Monday Notes
 read_time: 5 min read
 thumbnail: /images/img_9301.jpeg
 hero_image: /images/img_5476.jpeg
-excerpt: "Perfect Summer dinner "
+excerpt: A perfect summer dinner...
 featured: false
 published: false
 ---
