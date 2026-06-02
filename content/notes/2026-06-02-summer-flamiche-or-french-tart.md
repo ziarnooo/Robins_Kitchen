@@ -1,5 +1,5 @@
 ---
-title: Summer Flamiche or French tart
+title: "Flamiche "
 date: 2026-06-02T19:04:00.000-04:00
 category: Monday Notes
 read_time: 5 min read
