@@ -1,7 +1,7 @@
 ---
 title: "A perfect summer dinner...Flamiche "
 date: 2026-06-02T19:07:00.000-04:00
-category: Seasonal
+category: Monday Notes
 read_time: 5 min read
 thumbnail: /images/img_9301.jpeg
 hero_image: /images/img_5476.jpeg
