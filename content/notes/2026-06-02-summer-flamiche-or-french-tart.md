@@ -1,5 +1,5 @@
 ---
-title: "Flamiche "
+title: "A perfect summer dinner...Flamiche "
 date: 2026-06-02T19:07:00.000-04:00
 category: Monday Notes
 read_time: 5 min read
