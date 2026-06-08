@@ -7,7 +7,7 @@ thumbnail: /images/675a2187.jpg
 hero_image: /images/675a2326.jpeg
 image_alt: Robin's kitchen, mid-morning
 excerpt: Sometimes the dough just won't rise....
-featured: true
+featured: false
 published: true
 ---
 There's a particular feeling, after twenty years of bread baking, when you check your proofing dough and see exactly the same dough you put in three hours ago. Not bigger. Not lighter. Same.
