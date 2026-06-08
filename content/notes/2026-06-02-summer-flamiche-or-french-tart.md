@@ -4,7 +4,7 @@ date: 2026-06-02T19:07:00.000-04:00
 category: Recipes
 read_time: 5 min read
 thumbnail: /images/img_9301.jpeg
-hero_image: /images/img_5476-3.jpeg
+hero_image: ""
 excerpt: A perfect summer dinner...or brunch
 featured: false
 published: false
